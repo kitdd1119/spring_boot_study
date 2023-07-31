@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .location-row {
+          margin-bottom: 10px;
+        }
+        .delete-button {
+          margin-left: 10px;
+          color: red;
+          cursor: pointer;
+        }
+      </style>
+    <title>새 지역 추가</title>
+    <script>
+      var locationCount = 0; // 새 지역 추가 수
+      
+      // 새 지역 추가 함수
+      function addLocation() {
+        // 입력된 지역 이름 가져오기
+        var locationName = document.getElementById("locationInput").value;
+        
+        if (locationName !== "") {
+          // 새로운 입력창 생성
+          var newRow = document.createElement("div");
+          newRow.className = "location-row";
+          
+          // 번호 요소 생성
+          var numberSpan = document.createElement("span");
+          numberSpan.textContent = ++locationCount + ". ";
+          
+          // 지역 이름 요소 생성
+          var locationSpan = document.createElement("span");
+          locationSpan.textContent = locationName;
+          
+          // 삭제 버튼 요소 생성
+          var deleteButton = document.createElement("span");
+          deleteButton.className = "delete-button";
+          deleteButton.textContent = "X";
+          deleteButton.addEventListener("click", function() {
+            newRow.remove(); // 행 삭제
+            updateLocationNumbers(); // 지역 번호 업데이트
+          });
+          
+          newRow.appendChild(numberSpan);
+          newRow.appendChild(locationSpan);
+          newRow.appendChild(deleteButton);
+          
+          // 입력창을 추가할 div 요소 가져오기
+          var locationList = document.getElementById("locationList");
+          
+          // 입력창 추가
+          locationList.appendChild(newRow);
+        }
+        
+        // 입력창 비우기
+        document.getElementById("locationInput").value = "";
+      }
+      
+      // 지역 번호 업데이트 함수
+      function updateLocationNumbers() {
+        var rows = document.getElementsByClassName("location-row");
+        locationCount = rows.length; // 새 지역 추가 수 업데이트
+        
+        for (var i = 0; i < rows.length; i++) {
+          var numberSpan = rows[i].getElementsByTagName("span")[0];
+          numberSpan.textContent = (i + 1) + ". "; // 번호 업데이트
+        }
+      }
+    </script>
+</head>
+<body>
+  <a href="/local">지역보기</a>
+  
+  <h1>새 지역 추가</h1>
+  
+  <!-- 새 지역 입력창 -->
+  <input type="text" id="locationInput">
+  
+  <!-- 새 지역 추가 버튼 -->
+  <button onclick="addLocation()">지역 추가</button>
+  
+  <!-- 추가된 지역 리스트 -->
+  <div id="locationList"></div>
+</body>
+</html>
+
+
+
+
+--------------------------------------------------
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .x-button {
+            background-color: whitesmoke;
+            color: red;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="새 지역">
+        <button>추가</button>
+    </div>
+    <div>
+        <ul>
+            <li th:each="dto : ${resMainDTOList}">
+                <span th:text="${dto.regionsName}"></span>
+                <span class="x-button">X</span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

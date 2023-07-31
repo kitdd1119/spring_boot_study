@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>게시글 리스트</h1>
+    <div th:each="post : ${dto.postList}">
+        <div>제목 : <span th:text = "${post.title}"></span></div>
+        <div>내용 : <span th:text = "${post.content}"></span></div>
+        <div>글쓴이 번호 : <span th:text = "${post.user.idx}"></span></div>
+        <br>
+    </div>
+</body>
+</html>

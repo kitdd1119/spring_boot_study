@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>form Get</h1>
+    <!-- form 태그안에 input안 name의 속성이 중요하다. -->
+    <form action="/temp" method="get">
+        <input type="text" name="name">
+        <input type="text" name="age">
+        <!-- button type은 button과 submit이 있다. type을 설정안하면 자동으로 submit(제출됨.)으로 설정이 된다. -->
+        <button>제출</button>
+    </form>
+    <hr>
+    <h1>from Post</h1>
+    <form action="/temp" method="post">
+        <input type="text" name="name">
+        <input type="text" name="age">
+        <button>제출</button>
+    </form>
+    <hr>
+    <h1>from Post file</h1>
+    <form action="/file" method="post" enctype="multipart/form-data">
+        <input type="file" name="files" multiple>
+        <button>제출</button>
+    </form>
+</body>
+</html>

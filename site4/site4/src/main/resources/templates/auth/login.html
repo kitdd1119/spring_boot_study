@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+</head>
+
+<body>
+  <h1>로그인을 하세요</h1>
+  <div>
+    <p>아이디 : </p>
+    <input id="id" type="text" placeholder="아이디">
+    <p>비밀번호 : </p>
+    <input id="password" type="password" placeholder="비밀번호"><br>
+    <button onclick="requestLogin()">로그인</button>
+  </div>
+  <div>
+    <p>아이디가 없으시면 회원가입 버튼을 눌러주세요.</p>
+    <input type="button" value="회원가입">
+
+  </div>
+  <script>
+    const requestLogin = () => {
+      // querySelector 사용해도 됨.
+      const idInputTag = document.querySelector('#id');
+      const passwordInputTag = document.querySelector('#password');
+
+      if (idInputTag.value == "") {
+        alert('아이디를 입력해주세요.');
+        return;
+      }
+
+      if (passwordInputTag.value == "") {
+        alert('비밀번호를 입력해주세요.');
+        return;
+      }
+
+      const dto = {
+        user: {
+          id: idInputTag.value,
+          password: passwordInputTag.value
+        }
+      }
+
+      fetch("/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dto)
+      })
+        // response
+        .then(response => response.text())
+        .then(result => {
+          alert(result);
+        });
+    }
+  </script>
+</body>
+
+</html>

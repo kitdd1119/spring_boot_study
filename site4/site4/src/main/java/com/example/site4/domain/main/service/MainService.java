@@ -2,7 +2,6 @@ package com.example.site4.domain.main.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.site4.domain.main.dto.MainUserDTO;
 import com.example.site4.domain.main.dto.ResMainDTO;
-import com.example.site4.model.post.entity.PostEntity;
-import com.example.site4.model.post.repository.PostRepository;
 import com.example.site4.model.user.entity.UserEntity;
 import com.example.site4.model.user.repository.UserRepository;
 
